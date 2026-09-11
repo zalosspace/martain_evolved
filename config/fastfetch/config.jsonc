@@ -1,0 +1,86 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "type": "kitty",
+    "source": "~/.config/fastfetch/current.png",
+    "height": 15
+  },
+  "display": {
+    "separator": " "
+  },
+  "modules": [
+    { "type": "custom", "key": "{#94}╭───────────╮" },
+
+    {
+      "type": "title",
+      "format": "{user-name}",
+      "key": "{#94}│ {#31} user    {#keys}{#94}│"
+    },
+    {
+      "type": "uptime",
+      "key": "{#94}│ {#33}󰅐 uptime  {#keys}{#94}│"
+    },
+    {
+      "type": "display",
+      "compactType": "original-with-refresh-rate",
+      "key": "{#94}│ {#32} display {#keys}{#94}│"
+    },
+    {
+      "type": "os",
+      "key": "{#94}│ {#34}{icon} distro  {#keys}{#94}│"
+    },
+    {
+      "type": "kernel",
+      "key": "{#94}│ {#35} kernel  {#keys}{#94}│"
+    },
+    {
+      "type": "wm",
+      "key": "{#94}│ {#36} wm      {#keys}{#94}│"
+    },
+    {
+      "type": "de",
+      "key": "{#94}│ {#36}󰇄 desktop {#keys}{#94}│"
+    },
+    {
+      "type": "terminal",
+      "key": "{#94}│ {#31} term    {#keys}{#94}│"
+    },
+    {
+      "type": "shell",
+      "key": "{#94}│ {#32} shell   {#keys}{#94}│"
+    },
+    {
+      "type": "packages",
+      "key": "{#94}│ {#33}󰏖 apps    {#keys}{#94}│"
+    },
+    {
+      "type": "disk",
+      "folders": "/",
+      "key": "{#94}│ {#34}󰉉 disk    {#keys}{#94}│"
+    },
+    {
+      "type": "memory",
+      "key": "{#94}│ {#36} memory  {#keys}{#94}│"
+    },
+    {
+      "type": "terminalfont",
+      "key": "{#94}│ {#35} font    {#keys}{#94}│"
+    },
+    {
+      "type": "command",
+      "text": "birth_install=$(stat -c %W /); current=$(date +%s); echo $(((current - birth_install) / 86400)) days",
+      "key": "{#94}│ {#33}󱦟 OS Age  {#keys}{#94}│"
+    },
+
+    { "type": "custom", "key": "{#94}├───────────┤" },
+
+    {
+      "type": "colors",
+      "symbol": "circle",
+      "key": "{#94}│ {#94} colors  {#keys}{#94}│"
+    },
+
+    { "type": "custom", "key": "{#94}╰───────────╯" }
+  ]
+}
+
