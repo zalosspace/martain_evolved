@@ -4,7 +4,7 @@
 
 # Get Definition
 alt + m
-  ~/.config/definition.sh
+  ~/.config/scripts/definition.sh
 
 alt + s
   flameshot gui

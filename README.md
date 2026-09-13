@@ -1,5 +1,8 @@
 <h1 align="center">🪐 Martian Evolved</h1>
 
+> [!WARNING]
+> Works only for **Gentoo Linux**.  
+
 ## ⚙️ Get Started
 - Clone repo
 
