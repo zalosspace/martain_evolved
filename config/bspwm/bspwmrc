@@ -1,6 +1,7 @@
 #! /bin/sh
 
 bash ~/change_to_dvorak.sh
+~/.config/scripts/cliphist.sh &
 
 pgrep -x sxhkd > /dev/null || sxhkd -m -1 &
 

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-WORD=$(xsel -o --primary)
+WORD=$(xclip -o -selection primary)
 
 definition=$(curl -s "https://freedictionaryapi.com/api/v1/entries/en/$WORD" |
   jq -r '.entries[].senses[].definition' | head -3 | sed 's/^/• /; G')
