@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/sh
 set -e 
 shopt -s nullglob # handles empty dir
 
@@ -49,7 +49,7 @@ echo "✔ Backup complete."
 # Install Packages
 # -------------------------
 echo "Deploying martian dotfiles"
-echo "Installing Packages"
+echo "Make sure to Install the Packages"
 
 # -------------------------
 # ~/.config symlinks
@@ -99,15 +99,18 @@ if [[ "$SHELL" != "/bin/zsh" ]]; then
     echo "→ Default shell set to zsh (re-login required)"
 fi
 
-# Install Powerlevel10k 
-mkdir -p ~/.local/share
-P10K_DIR="$HOME/.local/share/powerlevel10k"
-if [[ ! -d "$P10K_DIR" ]]; then
-    echo "Installing Powerlevel10k"
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$P10K_DIR"
-else
-    echo "Powerlevel10k already installed"
-fi
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \
+  ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
+git clone https://github.com/zsh-users/zsh-autosuggestions \
+  ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+git clone https://github.com/zsh-users/zsh-syntax-highlighting \
+  ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+source ~/.zshrc
 
 # -------------------------
 # Keyboard layout
