@@ -4,10 +4,15 @@
 
 # Get Definition
 alt + m
-  ~/.config/scripts/definition.sh
+  ~/.config/definition.sh
 
+# Screenshot
 alt + s
   flameshot gui
+
+# Clipboard History
+alt + v
+  ~/.config/scripts/cliphist.sh get
 
 # Audio Control
 XF86AudioRaiseVolume
@@ -63,11 +68,7 @@ alt + g
 # set the window state
 # Toggle to tiled
 alt + t
-    bspc node -t tiled
-
-# Toggle to floating
-alt + shift + t
-    bspc node -t floating
+    bspc node -t \~floating
 
 # set the node flags
 alt + ctrl + {m,x,y,z}
