@@ -12,11 +12,12 @@ configuration {
 
 /*****----- Global Properties -----*****/
 * {
-    font:                        "JetBrains Mono Nerd Font 10";
-    background:                  #101010;
-    background-alt:              #252525;
+    font:                        "JetBrains Mono Nerd Font 13";
+    background:                  #ffffff;
+    background-alt:              #000000;
+
     foreground:                  #FFFFFF;
-    selected:                    #505050;
+    selected:                    #50537c;
     active:                      #909090;
     urgent:                      #707070;
 }
@@ -27,9 +28,10 @@ window {
     transparency:                "real";
     location:                    center;
     anchor:                      center;
+    border: 0;
 
     fullscreen:                  false;
-    width:                       400px;
+    width:                       600px;
     x-offset:                    0px;
     y-offset:                    0px;
 
@@ -37,7 +39,8 @@ window {
     enabled:                     true;
     // border-radius:               20px;
     cursor:                      "default";
-    background-color:            @background;
+    // background-color:            @background;
+    background-color:            rgba(250, 250, 250, 0.15);
 }
 
 /*****----- Main Box -----*****/
@@ -60,23 +63,23 @@ listbox {
 /*****----- Inputbar -----*****/
 inputbar {
     enabled:                     true;
-    spacing:                     10px;
-    padding:                     100px 40px;
-    background-color:            transparent;
-    background-image:            url("/home/zalos/Downloads/bg.jpg");
+    // spacing:                     10px;
+    padding:                     40px 20px;
     text-color:                  @foreground;
     orientation:                 horizontal;
-    children:                    [ "textbox-prompt-colon", "entry" ];
+    // children:                    [ "textbox-prompt-colon", "entry" ];
+    children:                    ["entry" ];
 }
-textbox-prompt-colon {
-    enabled:                     true;
-    expand:                      false;
-    str:                         "";
-    padding:                     12px 15px;
-    // border-radius:               100%;
-    background-color:            @background-alt;
-    text-color:                  inherit;
-}
+// textbox-prompt-colon {
+//     enabled:                     true;
+//     expand:                      false;
+//     str:                         "";
+//     padding:                     12px 15px;
+//     // border-radius:               100%;
+//     background-color:            @background-alt;
+//     text-color:                  inherit;
+// }
+
 entry {
     enabled:                     true;
     expand:                      true;
@@ -112,7 +115,7 @@ button selected {
 listview {
     enabled:                     true;
     columns:                     1;
-    lines:                       5;
+    lines:                       3;
     cycle:                       true;
     dynamic:                     true;
     scrollbar:                   false;
@@ -125,13 +128,13 @@ listview {
     background-color:            transparent;
     text-color:                  @foreground;
     cursor:                      "default";
+    border: none;
 }
 
 
 /*****----- Elements -----*****/
 element.alternate.normal {
-  background-color: @background;
-  text-color:       @foreground;
+  background-color: rgba(0,0,0,0);
 }
 
 element {
@@ -199,4 +202,3 @@ error-message {
     background-color:            @background;
     text-color:                  @foreground;
 }
-
