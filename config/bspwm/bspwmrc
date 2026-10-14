@@ -49,7 +49,7 @@ kitty --class cava_init sh -c "cava; exec zsh" &
 
 # feh
 # feh --bg-scale ~/.config/wallpapers/l_lawliet.png &
-feh --bg-scale ~/Downloads/bg.webp &
+feh --bg-scale ~/Downloads/wall.jpg &
 feh --zoom fill --scale-down --title "feh-rice" --no-menus --borderless ~/.config/wallpapers/itachi.jpg &
 
 dunst &
