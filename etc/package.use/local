@@ -1,0 +1,5 @@
+kde-frameworks/kwindowsystem X
+x11-libs/cairo X
+dev-cpp/cairomm X
+dev-qt/qtbase -icu
+dev-qt/qt5compat icu

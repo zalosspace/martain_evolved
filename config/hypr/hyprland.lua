@@ -17,6 +17,7 @@ hl.monitor({
 
 -- Set programs that you use
 local terminal    = "kitty"
+local lock    = "hyprlock"
 local fileManager = "dolphin"
 -- local menu        = "hyprlauncher"
 local menu        = "rofi -show drun"
@@ -25,19 +26,22 @@ local menu        = "rofi -show drun"
 ---- AUTOSTART ----
 -------------------
 
-hl.on("hyprland.start", function () 
-  hl.exec_cmd("/home/zalos/.config/change_to_dvorak.sh")
-  hl.exec_cmd(terminal)
-  hl.exec_cmd("waybar & hyprpaper & zen")
-end)
+hl.on("hyprland.start", function()
+    hl.exec_cmd("/home/zalos/.config/change_to_dvorak.sh")
+    hl.exec_cmd(terminal)
+    hl.exec_cmd("waybar & hyprpaper & zen")
 
+    hl.exec_cmd("pipewire &")
+    hl.exec_cmd("wireplumber &")
+    hl.exec_cmd("pipewire-pulse &")
+end)
 
 -------------------------------
 ---- ENVIRONMENT VARIABLES ----
 -------------------------------
 
-hl.env("XCURSOR_SIZE", "28")
-hl.env("HYPRCURSOR_SIZE", "28")
+hl.env("XCURSOR_SIZE", "36")
+hl.env("HYPRCURSOR_SIZE", "36")
 
 
 -----------------------
@@ -66,7 +70,7 @@ hl.env("HYPRCURSOR_SIZE", "28")
 -- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
 hl.config({
     general = {
-        gaps_in  = 8,
+        gaps_in  = 7,
         gaps_out = 15,
 
         border_size = 2,
@@ -90,8 +94,8 @@ hl.config({
         rounding_power = 2,
 
         -- Change transparency of focused and unfocused windows
-        active_opacity   = 1.0,
-        inactive_opacity = 1.0,
+        active_opacity   = 0.95,
+        inactive_opacity = 0.90,
 
         shadow = {
             enabled      = true,
@@ -103,7 +107,7 @@ hl.config({
         blur = {
             enabled   = true,
             size      = 4,
-            passes    = 1,
+            passes    = 2,
             vibrancy  = 0.1696,
         },
     },
@@ -186,8 +190,8 @@ hl.config({
 
 hl.config({
     misc = {
-        force_default_wallpaper = -1,    -- Set to 0 or 1 to disable the anime mascot wallpapers
-        disable_hyprland_logo   = false, -- If true disables the random hyprland logo / anime girl background. :(
+        force_default_wallpaper = 0,    -- Set to 0 or 1 to disable the anime mascot wallpapers
+        disable_hyprland_logo   = true, -- If true disables the random hyprland logo / anime girl background. :(
     },
 })
 
@@ -243,6 +247,7 @@ hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu))
+hl.bind(mainMod .. " + G", hl.dsp.exec_cmd(lock))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 -- hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
 
@@ -251,6 +256,14 @@ hl.bind(mainMod .. " + H",  hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + K",    hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + J",  hl.dsp.focus({ direction = "down" }))
+
+-- Move window around
+hl.bind(mainMod .. "+ SHIFT + H",  hl.dsp.window.move({ direction = "left" }))
+hl.bind(mainMod .. "+ SHIFT + J",  hl.dsp.window.move({ direction = "down" }))
+hl.bind(mainMod .. "+ SHIFT + K",  hl.dsp.window.move({ direction = "up" }))
+hl.bind(mainMod .. "+ SHIFT + L",  hl.dsp.window.move({ direction = "right" }))
+
+hl.bind(mainMod .. " + F",  hl.dsp.window.fullscreen({ action = "toggle" }))
 
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]

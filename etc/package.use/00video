@@ -1,0 +1,5 @@
+*/* VIDEO_CARDS: -* amdgpu radeonsi nvidia
+x11-libs/cairo X
+x11-libs/libdrm video_cards_amdgpu
+media-libs/mesa video_cards_radeonsi
+media-libs/mesa video_cards_radeonsi

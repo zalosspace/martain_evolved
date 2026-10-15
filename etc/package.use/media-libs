@@ -1,0 +1,3 @@
+media-libs/freetype harfbuzz
+media-libs/libpulse harfbuzz
+media-libs/libpulse X
