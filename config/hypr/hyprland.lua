@@ -28,6 +28,7 @@ local menu        = "rofi -show drun"
 
 hl.on("hyprland.start", function()
     hl.exec_cmd("/home/zalos/.config/change_to_dvorak.sh")
+    hl.exec_cmd("awww-daemon")
     hl.exec_cmd(terminal)
     hl.exec_cmd("waybar & hyprpaper & zen")
 
@@ -243,13 +244,13 @@ local mainMod = "ALT" -- Sets "Windows" key as main modifier
 hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(terminal))
 local closeWindowBind = hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
-hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
+hl.bind(mainMod .. "+ SHIFT + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + G", hl.dsp.exec_cmd(lock))
-hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
--- hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
+hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("/home/zalos/.config/scripts/wall_switch.sh"))
+hl.bind(mainMod .. " + C", hl.dsp.layout("togglesplit"))    -- dwindle only
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + H",  hl.dsp.focus({ direction = "left" }))

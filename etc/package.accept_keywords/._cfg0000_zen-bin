@@ -1,0 +1,4 @@
+www-client/zen-bin ~amd64
+# required by sci-ml/ollama-0.40.3::gentoo
+# required by sci-ml/ollama (argument)
+=sci-ml/ggml-0.26.0 ~amd64
