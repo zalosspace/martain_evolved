@@ -1,0 +1,7 @@
+config/Settings.qml
+*.log
+*.tmp
+__pycache__/
+*.pyc
+*~
+*.before-*

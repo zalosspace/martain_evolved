@@ -1,0 +1,7 @@
+dev-qt/qtbase vulkan
+dev-cpp/cpptrace unwind
+dev-qt/qtbase vulkan
+dev-qt/qtdeclarative vulkan
+dev-qt/qtmultimedia vulkan
+dev-qt/qtmultimedia qml
+dev-qt/qtmultimedia qml

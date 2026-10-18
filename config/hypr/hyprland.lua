@@ -256,7 +256,8 @@ hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + G", hl.dsp.exec_cmd(lock))
-hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("/home/zalos/.config/scripts/wall_switch.sh"))
+-- hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("/home/zalos/.config/scripts/wall_switch.sh"))
+hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("/home/zalos/.config/wallpicker/scripts/open_picker.sh"))
 hl.bind(mainMod .. " + C", hl.dsp.layout("togglesplit"))    -- dwindle only
 
 -- Move focus with mainMod + arrow keys
@@ -311,6 +312,8 @@ hl.bind("Home",  hl.dsp.exec_cmd("playerctl -a play-pause"), { locked = true })
 hl.bind("End", hl.dsp.exec_cmd("playerctl -a play-pause"), { locked = true })
 hl.bind("Prior",  hl.dsp.exec_cmd("playerctl -a previous"),   { locked = true })
 hl.bind("Next",  hl.dsp.exec_cmd("playerctl -a next"),       { locked = true })
+hl.bind("SHIFT + Prior",  hl.dsp.exec_cmd("playerctl position 5-"),   { locked = true })
+hl.bind("SHIFT + Next",  hl.dsp.exec_cmd("playerctl position 5+"),       { locked = true })
 
 
 --------------------------------
