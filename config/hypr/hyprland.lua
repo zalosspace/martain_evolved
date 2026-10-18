@@ -28,9 +28,8 @@ local menu        = "rofi -show drun"
 
 hl.on("hyprland.start", function()
     hl.exec_cmd("/home/zalos/.config/change_to_dvorak.sh")
-    hl.exec_cmd("awww-daemon")
     hl.exec_cmd(terminal)
-    hl.exec_cmd("waybar & hyprpaper & zen")
+    hl.exec_cmd("waybar & awww-daemon & zen")
 
     hl.exec_cmd("pipewire &")
     hl.exec_cmd("wireplumber &")
@@ -77,8 +76,16 @@ hl.config({
         border_size = 2,
 
         col = {
-            active_border   = { colors = {"rgba(33ccffee)", "rgba(00ff99ee)"}, angle = 45 },
-            inactive_border = "rgba(595959aa)",
+
+          active_border = {
+            colors = {
+              "rgba(B8860Bff)",
+              "rgba(FFD700ff)",
+              "rgba(FFFFE0ff)"
+            },
+            angle = 45,
+          },
+          inactive_border = "rgba(595959aa)",
         },
 
         -- Set to true to enable resizing windows by clicking and dragging on borders and gaps
@@ -295,10 +302,15 @@ hl.bind("XF86MonBrightnessUp",  hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+")
 hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"),                  { locked = true, repeating = true })
 
 -- Requires playerctl
-hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("playerctl next"),       { locked = true })
-hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
-hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
-hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
+hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl -a play-pause"), { locked = true })
+hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl -a play-pause"), { locked = true })
+hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("playerctl -a next"),       { locked = true })
+hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl -a previous"),   { locked = true })
+
+hl.bind("Home",  hl.dsp.exec_cmd("playerctl -a play-pause"), { locked = true })
+hl.bind("End", hl.dsp.exec_cmd("playerctl -a play-pause"), { locked = true })
+hl.bind("Prior",  hl.dsp.exec_cmd("playerctl -a previous"),   { locked = true })
+hl.bind("Next",  hl.dsp.exec_cmd("playerctl -a next"),       { locked = true })
 
 
 --------------------------------

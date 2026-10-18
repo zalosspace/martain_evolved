@@ -1,0 +1,29 @@
+window {
+    width: 900px;
+    background-color: rgba(11, 18, 32, 0.30);
+}
+
+inputbar {
+    enabled: false;
+}
+
+listview {
+    // this fixes the dashed line
+    border: none;
+    columns: 3;
+    lines: 3;
+    spacing: 10px;
+    fixed-height: true;
+    fixed-columns: true;
+}
+
+element {
+    orientation: vertical;
+    children: [element-icon];
+}
+
+element-icon {
+    size: 180px;
+    height: 120px;
+    horizontal-align: 0.5;
+}
