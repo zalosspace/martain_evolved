@@ -46,12 +46,12 @@ Item {
         return settings.uiAnimationsEnabled ? Math.max(0, Math.round(ms * settings.uiAnimationScale)) : 0;
     }
 
-    readonly property var safeTransitions: ["fade", "wipe", "wave", "grow", "center", "outer", "any"]
+    readonly property var safeTransitions: ["wave", "grow", "outer"]
 
     function normalizeTransition(name) {
         const t = String(name || "").trim().toLowerCase();
         if (t === "" || t === "random") return "random";
-        return window.safeTransitions.indexOf(t) !== -1 ? t : "fade";
+        return window.safeTransitions.indexOf(t) !== -1 ? t : "center";
     }
 
     function pickTransition() {
@@ -218,9 +218,9 @@ Item {
                 export FINAL_THUMB="${escapeBash(finalThumb)}"
                 export TEMP_THUMB="${escapeBash(tempThumb)}"
                 export RELOAD_SCRIPT="${escapeBash(reloadScript)}"
-                export RANDOM_TRANSITION="${escapeBash(window.normalizeTransition(randomTransition))}"
-                export TRANSITION_DURATION="${Number(settings.wallpaperTransitionDuration).toFixed(2)}"
-                export TRANSITION_FPS="${Math.max(1, Number(settings.wallpaperTransitionFps))}"
+                export RANDOM_TRANSITION="${any}"
+                export TRANSITION_DURATION="${3}"
+                export TRANSITION_FPS="${144}"
 
                 if [ -f "$TEMP_THUMB" ]; then
                     cp "$TEMP_THUMB" "$FINAL_THUMB" 2>/dev/null || true

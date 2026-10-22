@@ -117,6 +117,7 @@ alias lt='lsd --tree -alt'
 alias bye='shutdown -P now'
 alias rbye='shutdown -r now'
 alias dv='setxkbmap us dvorak'
+alias nvim='neovide --no-fork'
 
 # Pyenv setup
 # export PYENV_ROOT="$HOME/.pyenv"
@@ -126,5 +127,5 @@ alias dv='setxkbmap us dvorak'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-source ~/.profile
+# source ~/.profile
 export PATH="$HOME/.npm-global/bin:$PATH"

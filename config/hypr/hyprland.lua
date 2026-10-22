@@ -18,7 +18,7 @@ hl.monitor({
 -- Set programs that you use
 local terminal    = "kitty"
 local lock    = "hyprlock"
-local fileManager = "dolphin"
+local fileManager = "thunar"
 -- local menu        = "hyprlauncher"
 local menu        = "rofi -show drun"
 
@@ -31,6 +31,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd(terminal)
     hl.exec_cmd("waybar & awww-daemon & zen")
 
+    -- hl.exec_cmd("pulseaudio --start")
     hl.exec_cmd("pipewire &")
     hl.exec_cmd("wireplumber &")
     hl.exec_cmd("pipewire-pulse &")
@@ -198,6 +199,9 @@ hl.config({
 
 hl.config({
     misc = {
+        enable_swallow = true,
+        swallow_regex = "^(kitty)$",
+        swallow_exception_regex = "^(kitty)$",
         force_default_wallpaper = 0,    -- Set to 0 or 1 to disable the anime mascot wallpapers
         disable_hyprland_logo   = true, -- If true disables the random hyprland logo / anime girl background. :(
     },
@@ -279,7 +283,7 @@ hl.bind(mainMod .. " + F",  hl.dsp.window.fullscreen({ action = "toggle" }))
 for i = 1, 10 do
     local key = i % 10 -- 10 maps to key 0
     hl.bind(mainMod .. " + " .. key,             hl.dsp.focus({ workspace = i}))
-    hl.bind(mainMod .. " + SHIFT + " .. key,     hl.dsp.window.move({ workspace = i }))
+    -- hl.bind(mainMod .. " + SHIFT + " .. key,     hl.dsp.window.move({ workspace = i }))
 end
 
 -- Example special workspace (scratchpad)
@@ -295,25 +299,39 @@ hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Laptop multimedia keys for volume and LCD brightness
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),      { locked = true, repeating = true })
-hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),     { locked = true, repeating = true })
-hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),   { locked = true, repeating = true })
+-- hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
+-- hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),      { locked = true, repeating = true })
+-- hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),     { locked = true, repeating = true })
+-- hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),   { locked = true, repeating = true })
+hl.bind("XF86AudioRaiseVolume",
+    hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ +5%"),
+    { locked = true, repeating = true })
+hl.bind("XF86AudioLowerVolume",
+    hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ -5%"),
+    { locked = true, repeating = true })
+hl.bind("XF86AudioMute",
+    hl.dsp.exec_cmd("pactl set-sink-mute @DEFAULT_SINK@ toggle"),
+    { locked = true, repeating = true })
+hl.bind("XF86AudioMicMute",
+    hl.dsp.exec_cmd("pactl set-source-mute @DEFAULT_SOURCE@ toggle"),
+    { locked = true, repeating = true })
+
 hl.bind("XF86MonBrightnessUp",  hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"),                  { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"),                  { locked = true, repeating = true })
 
 -- Requires playerctl
 hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl -a play-pause"), { locked = true })
 hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl -a play-pause"), { locked = true })
+hl.bind(mainMod .. "+ Space", hl.dsp.exec_cmd("playerctl -a play-pause"), { locked = true })
 hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("playerctl -a next"),       { locked = true })
 hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl -a previous"),   { locked = true })
 
 hl.bind("Home",  hl.dsp.exec_cmd("playerctl -a play-pause"), { locked = true })
 hl.bind("End", hl.dsp.exec_cmd("playerctl -a play-pause"), { locked = true })
-hl.bind("Prior",  hl.dsp.exec_cmd("playerctl -a previous"),   { locked = true })
-hl.bind("Next",  hl.dsp.exec_cmd("playerctl -a next"),       { locked = true })
-hl.bind("SHIFT + Prior",  hl.dsp.exec_cmd("playerctl position 5-"),   { locked = true })
-hl.bind("SHIFT + Next",  hl.dsp.exec_cmd("playerctl position 5+"),       { locked = true })
+hl.bind("SHIFT + Prior",  hl.dsp.exec_cmd("playerctl -a previous"),   { locked = true })
+hl.bind("SHIFT + Next",  hl.dsp.exec_cmd("playerctl -a next"),       { locked = true })
+hl.bind("Prior",  hl.dsp.exec_cmd("playerctl position 5-"),   { locked = true })
+hl.bind("Next",  hl.dsp.exec_cmd("playerctl position 5+"),       { locked = true })
 
 
 --------------------------------
@@ -348,6 +366,11 @@ hl.window_rule({
 
     no_focus = true,
 })
+
+-- hl.window_rule({
+--     match = { class = "neovide" },
+--     no_anim = true,
+-- })
 
 -- Layer rules also return a handle.
 -- local overlayLayerRule = hl.layer_rule({

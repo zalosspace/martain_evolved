@@ -19,7 +19,7 @@
   "modules-center": ["clock"],
   "modules-right": [
     "backlight",
-    "pulseaudio",
+    "pipewire",
     "custom/keyboard-layout",
     "temperature",
     "memory",
@@ -221,7 +221,7 @@
     // "on-click": "alacritty -e nmtui"
     "on-click": "nm-connection-editor"
   },
-  "pulseaudio": {
+  "pipewire": {
     "scroll-step": 1,
     "format": "{icon} {volume: >3}%",
     "format-bluetooth": "{icon} {volume: >3}%",

@@ -19,6 +19,8 @@ keymap.set("n", "<C-d>", "<C-d>zz")
 keymap.set("n", "<C-u>", "<C-u>zz")
 keymap.set("n", "n", "nzzzv")
 keymap.set("n", "N", "Nzzzv")
+keymap.set("n", ",", ";zzzv")
+keymap.set("n", "'", ",zzzv")
 
 -- Best paste ever
 keymap.set("x", "<leader>p", "\"_dP")

@@ -2,27 +2,34 @@ import QtQuick
 import QtQuick.Controls
 import Quickshell
 import Quickshell.Io
+import Quickshell.Wayland
 import "."
 
-FloatingWindow {
+PanelWindow {
     id: root
+
     visible: true
-    title: "wallpaper-picker"
     color: "transparent"
 
-    onVisibleChanged: {
-        if (!visible) {
-            Qt.quit()
-        }
+    anchors {
+        top: true
+        bottom: true
+        left: true
+        right: true
     }
 
+    WlrLayershell.layer: WlrLayer.Overlay
+    WlrLayershell.keyboardFocus: WlrKeyboardFocus.Exclusive
+
+    // Keep the picker at its original dimensions.
     implicitWidth: Math.round(Screen.width * 0.94)
     implicitHeight: Math.round(Screen.height * 0.30)
 
     Shortcut {
         sequence: "Escape"
         context: Qt.ApplicationShortcut
-        enabled: !picker.isApplying && picker.currentFilter !== "Search"
+        enabled: !picker.isApplying
+                 && picker.currentFilter !== "Search"
         onActivated: Qt.quit()
     }
 
